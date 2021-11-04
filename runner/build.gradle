@@ -1,0 +1,12 @@
+plugins {
+    id 'runelite-plugins.common-build'
+}
+
+dependencies {
+    implementation group: 'net.runelite', name:'client', version: runeLiteVersion
+    implementation group: 'net.runelite', name:'jshell', version: runeLiteVersion
+
+    implementation project(':tag-tab-organizer')
+}
+
+version = '1'

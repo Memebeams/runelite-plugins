@@ -1,0 +1,5 @@
+rootProject.name = 'runelite-plugins'
+
+include 'runner'
+include 'tag-tab-organizer'
+
