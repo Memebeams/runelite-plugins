@@ -1,12 +1,26 @@
 plugins {
     id 'runelite-plugins.common-build'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'application'
 }
+
+version = '1'
 
 dependencies {
     implementation group: 'net.runelite', name:'client', version: runeLiteVersion
     implementation group: 'net.runelite', name:'jshell', version: runeLiteVersion
 
-    implementation project(':tag-tab-organizer')
+    implementation project(':plugins:tag-tab-organizer')
 }
 
-version = '1'
+shadowJar {
+    from sourceSets.main.output
+    configurations = [project.configurations.runtimeClasspath]
+    manifest {
+        attributes 'Main-Class': 'memebeams.runner.Runner'
+    }
+}
+
+application {
+    mainClassName = 'memebeams.runner.Runner'
+}
