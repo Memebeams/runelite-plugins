@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 repositories {
@@ -23,4 +24,23 @@ sourceCompatibility = '1.8'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+
+publishing {
+    repositories {
+        maven {
+            name = 'GitHubPackages'
+            url = 'https://maven.pkg.github.com/Memebeams/runelite-plugins'
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv('GITHUB_ACTOR')
+                password = project.findProperty("gpr.key") ?: System.getenv('GITHUB_TOKEN')
+            }
+        }
+    }
+
+    publications {
+        gpr(MavenPublication) {
+            from(components['java'])
+        }
+    }
 }
