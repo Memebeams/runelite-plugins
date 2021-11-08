@@ -1,5 +1,5 @@
 plugins {
-	id 'runelite-plugins.common-build'
+	id 'runelite-plugins.plugin-build'
 }
 
 version = '1.0'
