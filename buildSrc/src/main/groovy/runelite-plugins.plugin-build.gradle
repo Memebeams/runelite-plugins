@@ -1,0 +1,5 @@
+plugins {
+    id 'runelite-plugins.common-build'
+}
+
+group='memebeams.plugins'

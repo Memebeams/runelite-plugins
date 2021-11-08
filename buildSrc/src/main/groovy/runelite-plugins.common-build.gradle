@@ -20,10 +20,21 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
+group='memebeams'
 sourceCompatibility = '1.8'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+
+def gitHubUser = System.getenv('GH_USER')
+def gitHubToken = System.getenv('GH_TOKEN')
+
+if (project.rootProject.file('local.properties').exists()) {
+    Properties localProps = new Properties()
+    localProps.load(project.rootProject.file('local.properties').newDataInputStream())
+    gitHubUser = localProps.get('user')
+    gitHubToken = localProps.get('token')
 }
 
 publishing {
@@ -32,8 +43,8 @@ publishing {
             name = 'GitHubPackages'
             url = 'https://maven.pkg.github.com/Memebeams/runelite-plugins'
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv('GITHUB_ACTOR')
-                password = project.findProperty("gpr.key") ?: System.getenv('GITHUB_TOKEN')
+                username = gitHubUser
+                password = gitHubToken
             }
         }
     }
