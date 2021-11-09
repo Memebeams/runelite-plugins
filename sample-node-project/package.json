@@ -1,0 +1,17 @@
+{
+  "name": "sample-node-project",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.4.4",
+    "@types/express": "^4.17.13"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "tsc && node ./dist/main.js",
+    "build": "tsc"
+  }
+}

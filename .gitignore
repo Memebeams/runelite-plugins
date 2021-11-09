@@ -1,10 +1,17 @@
+# Java
 **/build
 **/out
 
-.gradle
+# NPM / Yarn
+**/node_modules
+**/dist
 
+# IntelliJ
 .idea/*
 !.idea/inspectionProfiles
 !.idea/vcs.xml
 
+# Gradle
 local.properties
+.gradle
+**/.gradle
