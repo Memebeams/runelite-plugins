@@ -27,31 +27,3 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-def gitHubUser = System.getenv('GH_USER')
-def gitHubToken = System.getenv('GH_TOKEN')
-
-if (project.rootProject.file('local.properties').exists()) {
-    Properties localProps = new Properties()
-    localProps.load(project.rootProject.file('local.properties').newDataInputStream())
-    gitHubUser = localProps.get('user')
-    gitHubToken = localProps.get('token')
-}
-
-publishing {
-    repositories {
-        maven {
-            name = 'GitHubPackages'
-            url = 'https://maven.pkg.github.com/Memebeams/runelite-plugins'
-            credentials {
-                username = gitHubUser
-                password = gitHubToken
-            }
-        }
-    }
-
-    publications {
-        gpr(MavenPublication) {
-            from(components['java'])
-        }
-    }
-}
